@@ -10,9 +10,11 @@ import {
 import { z } from "zod";
 import { authFormSchema } from "@/lib/utils";
 
+const formSchema = authFormSchema('sign-up');
+
 interface CustomInputProps {
-  name: FieldPath<z.infer<typeof authFormSchema>>;
-  control: Control<z.infer<typeof authFormSchema>>;
+  name: FieldPath<z.infer<typeof formSchema>>;
+  control: Control<z.infer<typeof formSchema>>;
   label: string;
   placeholder: string;
 }
@@ -36,7 +38,7 @@ const CustomInput = ({
               <Input
                 placeholder={placeholder}
                 className="input-class"
-                type={name === "password" ? 'password' : 'text'}
+                type={name === "password" ? "password" : "text"}
                 {...field}
               />
             </FormControl>
