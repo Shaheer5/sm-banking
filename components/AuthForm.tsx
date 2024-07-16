@@ -140,7 +140,7 @@ const AuthForm = ({ type }: { type: string }) => {
                       name="ssn"
                       control={form.control}
                       label="SSN(Social Security Number)"
-                      placeholder="YYYY-MM-DD"
+                      placeholder="123412"
                     />
                   </div>
                 </>
