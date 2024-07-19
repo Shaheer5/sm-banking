@@ -12,6 +12,7 @@ import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { signIn, signUp } from "@/lib/actions/user.action";
+import PlaidLink from "./PlaidLink";
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
@@ -81,120 +82,118 @@ const AuthForm = ({ type }: { type: string }) => {
           </p>
         </div>
       </header>
-      {user ? (
-        <div className="flex flex-col gap-4">{/* PLaid Link component */}</div>
-      ) : (
-        <>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              {type === "sign-up" && (
-                <>
-                  <div className="flex gap-4">
-                    <CustomInput
-                      name="firstName"
-                      control={form.control}
-                      label="First Name"
-                      placeholder="Enter your First Name"
-                    />
-                    <CustomInput
-                      name="lastName"
-                      control={form.control}
-                      label="Last Name"
-                      placeholder="Enter your Last Name"
-                    />
-                  </div>
+      {/* {user ? ( */}
+      <div className="flex flex-col gap-4">
+        <PlaidLink user={user} variant="primary" />
+      </div>
+      {/* ) : ( */}
+      <>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            {type === "sign-up" && (
+              <>
+                <div className="flex gap-4">
                   <CustomInput
-                    name="address1"
+                    name="firstName"
                     control={form.control}
-                    label="Address 1"
-                    placeholder="Enter your Specific Address"
+                    label="First Name"
+                    placeholder="Enter your First Name"
                   />
                   <CustomInput
-                    name="city"
+                    name="lastName"
                     control={form.control}
-                    label="City"
-                    placeholder="Enter your City"
+                    label="Last Name"
+                    placeholder="Enter your Last Name"
                   />
-                  <div className="flex gap-4">
-                    <CustomInput
-                      name="state"
-                      control={form.control}
-                      label="State"
-                      placeholder="Example: NY"
-                    />
-                    <CustomInput
-                      name="postalCode"
-                      control={form.control}
-                      label="Postal Code"
-                      placeholder="Example: 11101"
-                    />
-                  </div>
-                  <div className="flex gap-4">
-                    <CustomInput
-                      name="dateOfBirth"
-                      control={form.control}
-                      label="Date of Birth"
-                      placeholder="YYYY-MM-DD"
-                    />
-                    <CustomInput
-                      name="ssn"
-                      control={form.control}
-                      label="SSN(Social Security Number)"
-                      placeholder="123412"
-                    />
-                  </div>
-                </>
-              )}
-              <div className="space-y-8">
-                <CustomInput
-                  name="email"
-                  control={form.control}
-                  label="Email"
-                  placeholder="Enter your email"
-                />
-                <CustomInput
-                  name="password"
-                  control={form.control}
-                  label="Password"
-                  placeholder="Enter your Password"
-                />
-                <div className="flex flex-col gap-4">
-                  <Button
-                    type="submit"
-                    disabled={isLoading}
-                    className="form-btn"
-                  >
-                    {isLoading ? (
-                      <>
-                        <Loader2 size={20} className="animate-spin" /> &nbsp;
-                        Loading...
-                      </>
-                    ) : type === "sign-in" ? (
-                      "Sign In"
-                    ) : (
-                      "Sign Up"
-                    )}
-                  </Button>
                 </div>
+                <CustomInput
+                  name="address1"
+                  control={form.control}
+                  label="Address 1"
+                  placeholder="Enter your Specific Address"
+                />
+                <CustomInput
+                  name="city"
+                  control={form.control}
+                  label="City"
+                  placeholder="Enter your City"
+                />
+                <div className="flex gap-4">
+                  <CustomInput
+                    name="state"
+                    control={form.control}
+                    label="State"
+                    placeholder="Example: NY"
+                  />
+                  <CustomInput
+                    name="postalCode"
+                    control={form.control}
+                    label="Postal Code"
+                    placeholder="Example: 11101"
+                  />
+                </div>
+                <div className="flex gap-4">
+                  <CustomInput
+                    name="dateOfBirth"
+                    control={form.control}
+                    label="Date of Birth"
+                    placeholder="YYYY-MM-DD"
+                  />
+                  <CustomInput
+                    name="ssn"
+                    control={form.control}
+                    label="SSN(Social Security Number)"
+                    placeholder="123412"
+                  />
+                </div>
+              </>
+            )}
+            <div className="space-y-8">
+              <CustomInput
+                name="email"
+                control={form.control}
+                label="Email"
+                placeholder="Enter your email"
+              />
+              <CustomInput
+                name="password"
+                control={form.control}
+                label="Password"
+                placeholder="Enter your Password"
+              />
+              <div className="flex flex-col gap-4">
+                <Button type="submit" disabled={isLoading} className="form-btn">
+                  {isLoading ? (
+                    <>
+                      <Loader2 size={20} className="animate-spin" /> &nbsp;
+                      Loading...
+                    </>
+                  ) : type === "sign-in" ? (
+                    "Sign In"
+                  ) : (
+                    "Sign Up"
+                  )}
+                </Button>
               </div>
-            </form>
-          </Form>
+            </div>
+          </form>
+        </Form>
 
-          <footer className="flex justify-center gap-1">
-            <p className="text-14 font-normal text-gray-600">
-              {type === "sign-in"
-                ? "Don't have an account?"
-                : "Already have an account"}
-            </p>
-            <Link
-              href={type === "sign-in" ? "/sign-up" : "sign-in"}
-              className="form-link"
-            >
-              {type === "sign-in" ? "Sign Up" : "Sign In"}
-            </Link>
-          </footer>
-        </>
-      )}
+        <footer className="flex justify-center gap-1">
+          <p className="text-14 font-normal text-gray-600">
+            {type === "sign-in"
+              ? "Don't have an account?"
+              : "Already have an account"}
+          </p>
+          <Link
+            href={type === "sign-in" ? "/sign-up" : "sign-in"}
+            className="form-link"
+          >
+            {type === "sign-in" ? "Sign Up" : "Sign In"}
+          </Link>
+        </footer>
+      </>
+      {/* )} */}
     </section>
   );
 };
