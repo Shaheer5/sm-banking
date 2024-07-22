@@ -6,7 +6,7 @@ import {
   PlaidLinkOptions,
   usePlaidLink,
 } from "react-plaid-link";
-import { createLinkToken, exchangePublicToken } from "@/lib/actions/user.action";
+import { createLinkToken, exchangePublicToken } from "@/lib/actions/user.actions";
 
 const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
   const router = useRouter();
