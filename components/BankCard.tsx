@@ -28,7 +28,7 @@ const BankCard = ({
               <h2 className="text-12 font-semibold text-white">●● / ●●</h2>
             </div>
             <p className="text-14 font-semibold tracking-[1.1px] text-white">
-              ●●●● ●●●● ●●●● ●●●●{" "}
+              ●●●● ●●●● ●●●● {" "}
               <span className="text-16">{account.mask || 1243}</span>
             </p>
           </article>
