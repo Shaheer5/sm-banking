@@ -15,7 +15,7 @@ const BankCard = ({
     <div className="flex flex-col">
       <Link
         href={`/transaction-history/?id=${account.appwriteItemId}`}
-        className="bank-card min-w-[325px]"
+        className="bank-card"
       >
         <div className="bank-card_content">
           <div>
